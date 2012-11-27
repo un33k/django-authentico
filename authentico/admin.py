@@ -6,18 +6,17 @@ from django.contrib.auth.admin import UserAdmin as DjangoUserAdmin
 from models import User
 from forms import UserChangeForm
 from forms import UserCreationForm
-from backends import authenticate
 
 class UserAdmin(DjangoUserAdmin):
     fieldsets = (
-        (None, {'fields': ('email', 'password')}),
+        (_('Required info'), {'fields': ('email', 'password')}),
         (_('Personal info'), {'fields': ('first_name', 'last_name')}),
         (_('Permissions'), {'fields': ('is_active', 'is_staff', 'is_superuser',
                                        'groups', 'user_permissions')}),
         (_('Important dates'), {'fields': ('last_login', 'date_joined')}),
     )
     add_fieldsets = (
-        (None, {
+        (_('Required info'), {
             'classes': ('wide',),
             'fields': ('email', 'password1', 'password2')}
         ),
